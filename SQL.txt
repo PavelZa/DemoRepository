@@ -1,5 +1,6 @@
 
-Сделано в Oracle SQL developer тут у меня не работает заполнение таблиц через запятую (подчеркивает), и не работает AUTO INCREMENT тоже подчеркивает.
+Сделано в Oracle SQL developer тут у меня не работает заполнение таблиц через запятую - подчеркивает,
+и не работает AUTO INCREMENT тоже подчеркивает.
 
 
 -----Создаем 5 таблиц.
@@ -144,14 +145,14 @@ AND P.ID = (SELECT ID FROM PLASE_OF_WORK WHERE ORG_NAME LIKE '%MEL');
 
 -----Удаляем таблицы (у меня они удаляются и без DROP CONSTRAINT - на него ругается Oracle SQL developer )
 
-(так не работает)
+(так ругается)
 ALTER TABLE PERSON_INFO DROP CONSTRAINT POST_ID;
 ALTER TABLE PERSON_INFO DROP CONSTRAINT PLASEWORK_ID;
 ALTER TABLE PERSON_INFO DROP CONSTRAINT BALANCE_ID;
 ALTER TABLE BALANCE DROP CONSTRAINT RECIV_MONEY;
 
 
-(в такой последовательности все удаляет)
+(в такой последовательности прекрасно удаляет таблицы)
 DROP TABLE PERSON_INFO;
 DROP TABLE BALANCE;
 DROP TABLE RECEIVING_THE_MONEY;
