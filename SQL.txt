@@ -1,8 +1,8 @@
 
-Сделано в Oracle SQL developer тут у меня не работает заполнение таблиц через запятую (подчеркивает), и не работает AUTO INCREMENT тоже подчеркивает.
+РЎРґРµР»Р°РЅРѕ РІ Oracle SQL developer С‚СѓС‚ Сѓ РјРµРЅСЏ РЅРµ СЂР°Р±РѕС‚Р°РµС‚ Р·Р°РїРѕР»РЅРµРЅРёРµ С‚Р°Р±Р»РёС† С‡РµСЂРµР· Р·Р°РїСЏС‚СѓСЋ (РїРѕРґС‡РµСЂРєРёРІР°РµС‚), Рё РЅРµ СЂР°Р±РѕС‚Р°РµС‚ AUTO INCREMENT С‚РѕР¶Рµ РїРѕРґС‡РµСЂРєРёРІР°РµС‚.
 
 
------Создаем 5 таблиц.
+-----РЎРѕР·РґР°РµРј 5 С‚Р°Р±Р»РёС†.
 
 
 CREATE TABLE PLASE_OF_WORK (
@@ -39,7 +39,7 @@ FOREIGN KEY (BALANCE_ID) REFERENCES BALANCE (ID)
 
 
 
------Используем ALTER TABLE
+-----РСЃРїРѕР»СЊР·СѓРµРј ALTER TABLE
 
 
 ALTER TABLE RECEIVING_THE_MONEY ADD REC_DATE DATE NOT NULL;
@@ -54,8 +54,7 @@ ALTER TABLE BALANCE ADD( FOREIGN KEY (RECIV_MONEY) REFERENCES RECEIVING_THE_MONE
 
 
 
-
------Заносим значения в таблицы
+-----Р—Р°РЅРѕСЃРёРј Р·РЅР°С‡РµРЅРёСЏ РІ С‚Р°Р±Р»РёС†С‹
 
 
 INSERT INTO PLASE_OF_WORK VALUES ('1', 'ZLIN');
@@ -88,7 +87,7 @@ INSERT INTO PERSON_INFO VALUES ('5', 'LASTOCHKINA_NASTYA', 'FEMALE', '3', '5', '
 
 
 
------Скрипты для удаления и изменения записей.
+-----РЎРєСЂРёРїС‚С‹ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ Рё РёР·РјРµРЅРµРЅРёСЏ Р·Р°РїРёСЃРµР№.
 
 
 UPDATE BALANCE SET CREDIT = CREDIT - 100 WHERE CREDIT >0;
@@ -102,7 +101,7 @@ DELETE FROM PERSON_INFO WHERE PLASEWORK_ID =2 AND NAME LIKE '%PIK%';
 
 
 
------Выборки
+-----Р’С‹Р±РѕСЂРєРё
 
 
 SELECT *
@@ -120,21 +119,21 @@ FROM POST;
 SELECT *
 FROM PLASE_OF_WORK;
 
-SELECT S.NAME AS ФИО, G.DEBET AS НА_СЧЕТУ, G.CREDIT AS ВЕСИТ_КРЕДИТ
+SELECT S.NAME AS Г”Г€ГЋ, G.DEBET AS ГЌГЂ_Г‘Г—Г…Г’Г“, G.CREDIT AS Г‚Г…Г‘Г€Г’_ГЉГђГ…Г„Г€Г’
 FROM PERSON_INFO S, BALANCE G
 WHERE S.BALANCE_ID = G.ID;
 
-SELECT S.NAME AS ФИО, G.ORG_NAME AS ОРГАНИЗАЦИЯ, P.POST_NAME AS ЗАНИМАЕМАЯ_ДОЛЖНАСТЬ
+SELECT S.NAME AS Г”Г€ГЋ, G.ORG_NAME AS ГЋГђГѓГЂГЌГ€Г‡ГЂГ–Г€Гџ, P.POST_NAME AS Г‡ГЂГЌГ€ГЊГЂГ…ГЊГЂГџ_Г„ГЋГ‹Г†ГЌГЂГ‘Г’Гњ
 FROM PERSON_INFO S, PLASE_OF_WORK G, POST P
 WHERE S.POST_ID = P.ID AND S.PLASEWORK_ID = G.ID;
 
-SELECT F.ORG_NAME AS ОРГАНИЗАЦИЯ, COUNT(*) AS КОЛИЧЕСТВО_РАБОЧИХ
+SELECT F.ORG_NAME AS ГЋГђГѓГЂГЌГ€Г‡ГЂГ–Г€Гџ, COUNT(*) AS ГЉГЋГ‹Г€Г—Г…Г‘Г’Г‚ГЋ_ГђГЂГЃГЋГ—Г€Г•
 FROM PLASE_OF_WORK F,PERSON_INFO G
 WHERE G.PLASEWORK_ID = F.ID
 GROUP BY F.ORG_NAME
 HAVING COUNT(*)>1;
 
-SELECT S.NAME AS ФИО, G.DEBET AS НА_СЧЕТУ, F.AMOUNT_OF_MONEY AS ПОСТУПЛЕНИЯ_В_ОБРАБОТКЕ, P.ORG_NAME AS ОРГАНИЗАЦИЯ
+SELECT S.NAME AS Г”Г€ГЋ, G.DEBET AS ГЌГЂ_Г‘Г—Г…Г’Г“, F.AMOUNT_OF_MONEY AS ГЏГЋГ‘Г’Г“ГЏГ‹Г…ГЌГ€Гџ_Г‚_ГЋГЃГђГЂГЃГЋГ’ГЉГ…, P.ORG_NAME AS ГЋГђГѓГЂГЌГ€Г‡ГЂГ–Г€Гџ
 FROM PERSON_INFO S, BALANCE G, RECEIVING_THE_MONEY F, PLASE_OF_WORK P
 WHERE S.PLASEWORK_ID = (SELECT ID FROM PLASE_OF_WORK WHERE ORG_NAME LIKE '%MEL')
 AND S.BALANCE_ID = G.ID
@@ -143,7 +142,7 @@ AND P.ID = (SELECT ID FROM PLASE_OF_WORK WHERE ORG_NAME LIKE '%MEL');
 
 
 
------Удаляем таблицы
+-----РЈРґР°Р»СЏРµРј С‚Р°Р±Р»РёС†С‹
 
 
 ALTER TABLE PERSON_INFO DROP CONSTRAINT POST_ID;
