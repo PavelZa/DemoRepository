@@ -1,3 +1,3 @@
 # DemoRepository
 
-Hi
+Hi, here is homework on jdbc.
