@@ -1,3 +1,3 @@
 # DemoRepository
 
-Hi here is the homework on html/css/js
+Hi, here is the homework on html/css/js
